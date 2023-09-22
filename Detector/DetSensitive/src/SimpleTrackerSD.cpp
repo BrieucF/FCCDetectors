@@ -45,7 +45,7 @@ bool SimpleTrackerSD::ProcessHits(G4Step* aStep, G4TouchableHistory*) {
   // create a hit and add it to collection
   // deleted in ~G4Event
   auto hit = new k4::Geant4PreDigiTrackHit(
-      track->GetTrackID(), track->GetDefinition()->GetPDGEncoding(), edep, track->GetGlobalTime());
+      track->GetParentID()/*temporary workaround for cluster counting*/, track->GetDefinition()->GetPDGEncoding(), edep, track->GetGlobalTime());
   hit->cellID = utils::cellID(m_seg, *aStep);
   hit->prePos = prePos;
   hit->postPos = postPos;
